@@ -1,0 +1,24 @@
+<h1><%= @user.name %></h1>
+<p><strong><u>User Information</u></strong></p>
+<p>Email: <%= @user.email %></p>
+<p>Occupation: <%= @user.occupation %></p>
+<p>Years Experience: <%= @user.experience %></p>
+<p><strong><u>Recipes Created: <%= @user.recipes.count %></u></strong></p>
+<ul>
+    <% @user.recipes.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+    <% end %>
+</ul>
+<% if @user.user_allergies%>
+    <p><strong><u>Allergies: <%= @user.user_allergies.count %></u></strong></p>
+    <ul>
+        <% @user.user_allergies.each do |allergy_record| %>
+            <li><%= link_to allergy_record.ingredient.name, ingredient_path(allergy_record.ingredient) %> (<%= allergy_record.severity %>)</li>
+        <% end %>
+    </ul><br>
+<% end %>
+
+
+<%= button_to "Create New Recipe", new_recipe_path, method: :get %><br>
+<%= button_to "View All Users", users_path, method: :get %><br>
+<%= button_to "Delete User Account", user_path(@user), method: :delete %>

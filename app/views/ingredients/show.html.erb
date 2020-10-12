@@ -1,0 +1,9 @@
+<h1><%= @ingredient.name %></h1>
+<h2><%= @ingredient.calories %></h2>
+
+<h2>Recipes where this Ingredient is featured:</h2>
+<% @ingredient.recipes.uniq.each do |recipe| %>
+<h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+<% end %>
+
+

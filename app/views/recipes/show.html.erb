@@ -1,0 +1,15 @@
+<h1><%= @recipe.name %></h1>
+<h2>By: <%= link_to @recipe.user.name, user_path(@recipe.user) %></h2>
+<p><strong><u>Recipe Description:</u></strong></p>
+<p><%= @recipe.description %></p>
+<p><strong><u>Ingredients:</u></strong></p>
+<ul>
+    <% @recipe.ingredients.each do |ing| %>
+    <li><%= link_to ing.name, ingredient_path(ing) %></li>
+    <% end %>
+</ul>
+<%= image_tag @recipe.img_url %>
+
+<%= button_to "Add Ingredients To Recipe", new_recipe_ingredient_path, method: :get %><br>
+<%= button_to "View All Recipes", recipes_path, method: :get %><br>
+<%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete %>
